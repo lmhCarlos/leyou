@@ -1,0 +1,33 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: auth-service
+  # ...
+  cloud:
+    # ...
+    gateway:
+      # ...
+      routes:
+      - id: auth-service # 授权服务
+        uri: lb://auth-service
+        predicates:
+        - Path=/auth/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ly-registry:10086/eureka
+logging:
+  level:
+    com.leyou: debug
+
+ly:
+  oss:
+    accessKeyId:  LTAI4GFRyqWRnJ4mmC6ZB51L
+    accessKeySecret:  fcIjHrAmgpglpFyNkBrvxzFtJv5PgK
+    host: http://leyouimg.oss-cn-shanghai.aliyuncs.com
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    dir: "img"
+    expireTime: 1200000
+    maxFileSize: 5242880 # 表示上传的文件的大小
+

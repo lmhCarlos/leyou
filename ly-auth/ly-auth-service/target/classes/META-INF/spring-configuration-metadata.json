@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "ly.oss",
+      "type": "com.leyou.auth.config.OSSProperties",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "ly.oss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    },
+    {
+      "name": "ly.oss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    },
+    {
+      "name": "ly.oss.dir",
+      "type": "java.lang.String",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    },
+    {
+      "name": "ly.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    },
+    {
+      "name": "ly.oss.expire-time",
+      "type": "java.lang.Long",
+      "sourceType": "com.leyou.auth.config.OSSProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "ly.oss.host",
+      "type": "java.lang.String",
+      "sourceType": "com.leyou.auth.config.OSSProperties"
+    },
+    {
+      "name": "ly.oss.max-file-size",
+      "type": "java.lang.Long",
+      "sourceType": "com.leyou.auth.config.OSSProperties",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}

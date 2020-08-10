@@ -1,16 +1,16 @@
 package com.leyou.item.web;
 
 import com.leyou.item.dto.PageDTO;
-import com.leyou.item.dto.SkuDTO;
+import com.leyou.item.dto.SpecParamDTO;
 import com.leyou.item.dto.SpuDTO;
 import com.leyou.item.service.SkuService;
 import com.leyou.item.service.SpuDetailService;
 import com.leyou.item.service.SpuService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
@@ -40,5 +40,41 @@ public class GoodsController {
     ){
         PageDTO<SpuDTO> pageDTO =spuService.queryGoodsByPage(brandId, categoryId, id, page, rows, saleable);
         return ResponseEntity.ok(pageDTO);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> saveGoods(@RequestBody SpuDTO spuDTO){
+            spuService.saveGoods(spuDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("saleable")
+    public ResponseEntity<Void> updateSaleable(@RequestParam("id") Long id,@RequestParam("saleable") Boolean saleable){
+        spuService.updateSaleable(id,saleable);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<SpuDTO> queryGoodsById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(spuService.queryGoodsById(id));
+    }
+
+    @PutMapping("/sku/list")
+    public ResponseEntity<Void> updateGoods(@RequestBody SpuDTO spuDTO){
+        spuService.updateGoods(spuDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/spec/value")
+    public ResponseEntity<List<SpecParamDTO>> querySpecsValues(
+            @RequestParam("id") Long id, @RequestParam(value = "searching", required = false) Boolean searching){
+        return ResponseEntity.ok(spuDetailService.querySpecValues(id, searching));
+    }
+
+
+    @GetMapping("spu/{id}")
+    public ResponseEntity<SpuDTO> querySpuById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(new SpuDTO(spuService.getById(id)));
     }
 }
