@@ -1,0 +1,17 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+  jackson:
+    default-property-inclusion: non_null # json处理忽略null字段
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ly-registry:10086/eureka
+logging:
+  level:
+    com.leyou: debug
+ly:
+  elasticsearch:
+    hosts: http://ly-es:9200
