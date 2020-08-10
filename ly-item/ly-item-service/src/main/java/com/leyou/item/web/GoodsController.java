@@ -1,6 +1,7 @@
 package com.leyou.item.web;
 
 import com.leyou.item.dto.PageDTO;
+import com.leyou.item.dto.SkuDTO;
 import com.leyou.item.dto.SpecParamDTO;
 import com.leyou.item.dto.SpuDTO;
 import com.leyou.item.service.SkuService;
@@ -77,4 +78,20 @@ public class GoodsController {
     public ResponseEntity<SpuDTO> querySpuById(@PathVariable("id") Long id){
         return ResponseEntity.ok(new SpuDTO(spuService.getById(id)));
     }
+
+
+    /**
+     * 根据spuId查询sku 的集合
+     * @param spuId 商品id
+     * @return sku 的集合
+     */
+    @GetMapping("/sku/of/spu")
+    public ResponseEntity<List<SkuDTO>> querySkuBySpuId(@RequestParam("id") Long spuId){
+        return ResponseEntity.ok(
+                SkuDTO.convertEntityList(
+                        skuService.query().eq("spu_id", spuId).list()));
+    }
+
+
+
 }
