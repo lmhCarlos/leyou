@@ -1,6 +1,11 @@
 server:
   port: 8083
 spring:
+  rabbitmq:
+    host: ly-mq
+    username: leyou
+    password: 123321
+    virtual-host: /
   application:
     name: search-service
   jackson:
